@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nos Casamos - Yarleni y Jean Carlos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #fcfbfa;
+            color: #333333;
+            overflow-x: hidden;
+        }
+        .font-serif-elegant {
+            font-family: 'Cormorant Garamond', serif;
+        }
+        .bg-brand-gold { background-color: #bfa888; }
+        .text-brand-gold { color: #bfa888; }
+        .border-brand-gold { border-color: #bfa888; }
+        .bg-brand-cream { background-color: #f5f0eb; }
+
+        /* ==================== SOBRE 3D REALISTA ==================== */
+        #envelope-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, #f8f5f0 0%, #e6dfd5 100%);
+            z-index: 9999;
+            transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1), opacity 1s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .envelope-container {
+            position: relative;
+            width: 320px;
+            height: 220px;
+            perspective: 1000px;
+        }
+
+        .envelope {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background-color: #e3d7c5;
+            border-radius: 6px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15), 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .envelope-container:hover .envelope {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2), 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Carta interna que sale del sobre */
+        .envelope-card {
+            position: absolute;
+            bottom: 10px;
+            left: 5%;
+            width: 90%;
+            height: 85%;
+            background: #ffffff;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #f0e6d8;
+        }
+
+        .envelope-card-content {
+            text-align: center;
+            padding: 10px;
+        }
+
+        /* Solapas del Sobre */
+        .flap {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-style: solid;
+        }
+
+        /* Solapa Superior (La que se abre) */
+        .flap-top {
+            top: 0;
+            left: 0;
+            border-width: 125px 160px 0 160px;
+            border-color: #d6c6b0 transparent transparent transparent;
+            transform-origin: top;
+            transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 5;
+            filter: drop-shadow(0 3px 4px rgba(0,0,0,0.1));
+        }
+
+        /* Solapas Laterales e Inferior */
+        .flap-left {
+            top: 0;
+            left: 0;
+            border-width: 110px 0 110px 160px;
+            border-color: transparent transparent transparent #dacbb7;
+            z-index: 3;
+        }
+
+        .flap-right {
+            top: 0;
+            right: 0;
+            border-width: 110px 160px 110px 0;
+            border-color: transparent #dacbb7 transparent transparent;
+            z-index: 3;
+        }
+
+        .flap-bottom {
+            bottom: 0;
+            left: 0;
+            border-width: 0 160px 115px 160px;
+            border-color: transparent transparent #cfbfab transparent;
+            z-index: 4;
+            filter: drop-shadow(0 -2px 3px rgba(0,0,0,0.05));
+        }
+
+        /* Sello de Cera Realista */
+        .wax-seal {
+            position: absolute;
+            top: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 48px;
+            height: 48px;
+            background: radial-gradient(circle at 30% 30%, #d4af37, #aa820a, #785a00);
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3), inset 0 2px 3px rgba(255, 255, 255, 0.4), inset 0 -2px 5px rgba(0, 0, 0, 0.4);
+            z-index: 6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 15px;
+            color: #fff8e7;
+            font-style: italic;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            border: 1px solid #b89218;
+        }
+
+        /* Estado Abierto */
+        .open .flap-top {
+            transform: rotateX(180deg);
+            z-index: 1;
+        }
+
+        .open .wax-seal {
+            opacity: 0;
+            transform: translateX(-50%) scale(0.5);
+            pointer-events: none;
+        }
+
+        .open .envelope-card {
+            transform: translateY(-80px);
+            z-index: 4;
+        }
+
+        /* ==================== ESTILOS GENERALES ==================== */
+        .sticky-photo-container {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            width: 100%;
+            z-index: 1;
+        }
+
+        .sticky-photo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .content-overlay {
+            position: relative;
+            z-index: 10;
+            background-color: #fcfbfa;
+            box-shadow: 0 -10px 25px rgba(0,0,0,0.08);
+        }
+
+        .bg-responsive-card {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .printed-photo {
+            background-color: #ffffff;
+            padding: 12px 12px 28px 12px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12), 0 3px 6px rgba(0, 0, 0, 0.08);
+            border-radius: 2px;
+            transition: all 0.4s ease;
+        }
+
+        .printed-photo:nth-child(odd) { transform: rotate(-1.5deg); }
+        .printed-photo:nth-child(even) { transform: rotate(1.5deg); }
+
+        .printed-photo:hover {
+            transform: rotate(0deg) scale(1.04);
+            box-shadow: 0 18px 30px rgba(0, 0, 0, 0.2);
+            z-index: 20;
+        }
+
+        .printed-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 1px;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <audio id="wedding-bg-music" loop>
+        <source src="melodia.mp3" type="audio/mpeg">
+    </audio>
+
+    <button id="music-control" onclick="toggleMusic()" class="fixed bottom-5 right-5 z-50 bg-white/90 backdrop-blur-sm border border-brand-gold p-3 rounded-full shadow-xl text-brand-gold hover:scale-110 transition-transform hidden animate__animated animate__fadeInUp">
+        <svg id="music-icon-play" class="w-6 h-6 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"></path>
+        </svg>
+        <svg id="music-icon-pause" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.75 5.25v13.5m-7.5-13.5v13.5"></path>
+        </svg>
+    </button>
+
+    <!-- PANTALLA INICIAL CON SOBRE 3D -->
+    <div id="envelope-overlay" onclick="openInvitation()">
+        <div class="text-center flex flex-col items-center gap-10">
+            <p class="font-serif-elegant italic text-2xl tracking-widest text-gray-600 animate__animated animate__fadeIn">Una invitación especial para ti...</p>
+            
+            <div id="envelope-container" class="envelope-container">
+                <div class="envelope">
+                    <div class="flap flap-top"></div>
+                    <div class="flap flap-left"></div>
+                    <div class="flap flap-right"></div>
+                    <div class="flap flap-bottom"></div>
+                    
+                    <div class="wax-seal">Y&JC</div>
+
+                    <div class="envelope-card">
+                        <div class="envelope-card-content">
+                            <p class="font-serif-elegant italic text-lg text-brand-gold font-bold">Nuestra Boda</p>
+                            <p class="text-xs uppercase tracking-widest text-gray-500 mt-1">Yarleni & Jean Carlos</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <p class="text-xs uppercase tracking-widest text-gray-400 animate__animated animate__pulse animate__infinite">Toca el sobre para abrir</p>
+        </div>
+    </div>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <div id="main-content" class="hidden">
+        
+        <div class="sticky-photo-container">
+            <img src="album/portada.jpeg" alt="Yarleni y Jean Carlos">
+            <div class="absolute inset-0 flex flex-col justify-between items-center px-6 py-12 text-white pointer-events-none">
+                <div class="text-center mt-12 animate__animated animate__fadeInDown animate__delay-1s">
+                    <p class="uppercase tracking-widest text-sm mb-2 opacity-90 drop-shadow">Nos Casamos</p>
+                    <h1 class="font-serif-elegant text-5xl md:text-7xl italic my-4 drop-shadow-lg">Yarleni y Jean Carlos</h1>
+                    <p class="tracking-wider text-lg opacity-90 drop-shadow">21 DE NOVIEMBRE 2026</p>
+                </div>
+                
+                <div class="text-center flex flex-col items-center animate__animated animate__bounce animate__infinite mb-6">
+                    <span class="text-xs uppercase tracking-widest mb-2 opacity-80 drop-shadow">Desliza</span>
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-overlay">
+            
+            <section class="py-20 px-6 text-center max-w-2xl mx-auto">
+                <p class="font-serif-elegant text-2xl md:text-3xl italic text-gray-7xl leading-relaxed">
+                    "Una unión perfecta es aquella donde tres se toman de la mano: el esposo, la esposa y Dios"
+                </p>
+                <div class="text-brand-gold mt-6 text-2xl animate__animated animate__heartBeat animate__infinite animate__slower">♥</div>
+            </section>
+
+            <section class="py-16 px-6 bg-brand-cream text-center">
+                <div class="max-w-xl mx-auto border border-brand-gold/40 p-8 bg-white/80 rounded-sm shadow-sm relative">
+                    <p class="font-serif-elegant italic text-xl text-gray-6xl mb-8">Con la bendición de Dios y en compañía de nuestros padres</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                        <div>
+                            <h3 class="font-serif-elegant italic text-xl font-bold text-brand-gold mb-2">Padres de la novia</h3>
+                            <p class="text-sm text-gray-700">Sr. Polfirio Polanco</p>
+                            <p class="text-sm text-gray-700">Sra. Ceneida Encarnación</p>
+                        </div>
+                        <div>
+                            <h3 class="font-serif-elegant italic text-xl font-bold text-brand-gold mb-2">Padres del novio</h3>
+                            <p class="text-sm text-gray-700">Sr. Aleysi Feliz</p>
+                            <p class="text-sm text-gray-700">Sra. Ramona González</p>
+                        </div>
+                    </div>
+                    <p class="font-serif-elegant italic text-xl mt-6">Nos complace invitarte a ser parte de este gran día.</p>
+                </div>
+            </section>
+
+            <section class="py-20 px-6 max-w-5xl mx-auto text-center">
+                <h2 class="font-serif-elegant italic text-4xl mb-2">Nuestra Historia de Amor</h2>
+                <p class="text-sm text-gray-500 uppercase tracking-widest mb-12">Cada momento juntos ha sido un regalo</p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 p-6 bg-brand-cream/30 rounded-lg border border-brand-gold/20">
+                    <div class="printed-photo h-72">
+                        <img src="historia1.jpeg" alt="Momento especial 1" loading="lazy" onerror="this.src='album/foto1.jpeg'">
+                    </div>
+                    <div class="printed-photo h-72">
+                        <img src="historia2.jpeg" alt="Momento especial 2" loading="lazy" onerror="this.src='album/foto2.jpeg'">
+                    </div>
+                    <div class="printed-photo h-72">
+                        <img src="historia3.jpeg" alt="Momento especial 3" loading="lazy" onerror="this.src='album/foto3.jpeg'">
+                    </div>
+                    <div class="printed-photo h-72">
+                        <img src="historia4.jpeg" alt="Momento especial 4" loading="lazy" onerror="this.src='album/foto4.jpeg'">
+                    </div>
+                    <div class="printed-photo h-72">
+                        <img src="historia5.jpeg" alt="Momento especial 5" loading="lazy" onerror="this.src='album/foto5.jpeg'">
+                    </div>
+                    <div class="printed-photo h-72">
+                        <img src="historia6.jpeg" alt="Momento especial 6" loading="lazy" onerror="this.src='album/foto6.jpeg'">
+                    </div>
+                </div>
+            </section>
+
+            <section class="relative py-20 px-6 text-center text-white bg-responsive-card min-h-[40vh] flex flex-col justify-center" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), url('album/imagenconteo.jpeg');">
+                <h2 class="font-serif-elegant italic text-4xl mb-8">Faltan para nuestra boda</h2>
+                
+                <div class="flex justify-center gap-4 md:gap-8 max-w-xl mx-auto">
+                    <div class="bg-white/10 backdrop-blur-sm px-4 py-3 rounded-md w-20 md:w-24 border border-white/10">
+                        <span id="days" class="block text-2xl md:text-3xl font-light">00</span>
+                        <span class="text-xs uppercase tracking-wider text-gray-300">Días</span>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm px-4 py-3 rounded-md w-20 md:w-24 border border-white/10">
+                        <span id="hours" class="block text-2xl md:text-3xl font-light">00</span>
+                        <span class="text-xs uppercase tracking-wider text-gray-300">Hrs</span>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm px-4 py-3 rounded-md w-20 md:w-24 border border-white/10">
+                        <span id="minutes" class="block text-2xl md:text-3xl font-light">00</span>
+                        <span class="text-xs uppercase tracking-wider text-gray-300">Min</span>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm px-4 py-3 rounded-md w-20 md:w-24 border border-white/10">
+                        <span id="seconds" class="block text-2xl md:text-3xl font-light">00</span>
+                        <span class="text-xs uppercase tracking-wider text-gray-300">Seg</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="py-20 px-6 max-w-4xl mx-auto">
+                <h2 class="font-serif-elegant italic text-center text-4xl mb-12">Dónde y Cuándo</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <div class="relative text-center bg-white border border-brand-gold/30 p-8 shadow-md flex flex-col justify-between hover:shadow-xl transition-shadow duration-300">
+                        <div>
+                            <div class="h-48 bg-responsive-card mb-6 rounded-sm" style="background-image: url('album/parroquia.jpeg');"></div>
+                            <h3 class="font-serif-elegant text-2xl mb-2">Ceremonia Religiosa</h3>
+                            <p class="text-brand-gold font-medium mb-4">Parroquia San Felipe Apóstol</p>
+                            <p class="text-xl mb-2">4:00 P.M.</p>
+                            <p class="text-sm text-gray-500 mb-6">San Felipe, Villa Mella</p>
+                        </div>
+                        <a href="https://maps.app.goo.gl/95UuVWk4QVCxZYw98" target="_blank" class="inline-block border border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-white transition-all px-6 py-2 text-sm tracking-widest uppercase rounded-sm">Ver Mapa</a>
+                    </div>
+
+                    <div class="relative text-center bg-white border border-brand-gold/30 p-8 shadow-md flex flex-col justify-between hover:shadow-xl transition-shadow duration-300">
+                        <div>
+                            <div class="h-48 bg-responsive-card mb-6 rounded-sm" style="background-image: url('album/salon.jpeg');"></div>
+                            <h3 class="font-serif-elegant text-2xl mb-2">Brindis</h3>
+                            <p class="text-brand-gold font-medium mb-4">Salón de la Parroquia</p>
+                            <p class="text-xl mb-2">Después de la celebración</p>
+                            <p class="text-sm text-gray-500 mb-6">San Felipe, Villa Mella</p>
+                        </div>
+                        <a href="https://maps.app.goo.gl/95UuVWk4QVCxZYw98" target="_blank" class="inline-block border border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-white transition-all px-6 py-2 text-sm tracking-widest uppercase rounded-sm">Ver Mapa</a>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <script>
+        const music = document.getElementById("wedding-bg-music");
+        const musicControl = document.getElementById("music-control");
+        const playIcon = document.getElementById("music-icon-play");
+        const pauseIcon = document.getElementById("music-icon-pause");
+
+        function openInvitation() {
+            const container = document.getElementById("envelope-container");
+            const overlay = document.getElementById("envelope-overlay");
+            const mainContent = document.getElementById("main-content");
+
+            // Paso 1: Abrir la solapa y romper el sello
+            container.classList.add("open");
+
+            // Paso 2: Transición de la pantalla hacia arriba
+            setTimeout(() => {
+                overlay.style.transform = "translateY(-100%)";
+                overlay.style.opacity = "0";
+                
+                mainContent.classList.remove("hidden");
+                mainContent.classList.add("animate__animated", "animate__fadeIn");
+                
+                musicControl.classList.remove("hidden");
+
+                music.play().then(() => {
+                    playIcon.classList.add("hidden");
+                    pauseIcon.classList.remove("hidden");
+                }).catch(err => console.log("El navegador requiere interacción previa para reproducir audio."));
+
+            }, 2500);
+
+            setTimeout(() => {
+                overlay.style.display = "none";
+            }, 3500);
+        }
+
+        function toggleMusic() {
+            if (music.paused) {
+                music.play();
+                playIcon.classList.add("hidden");
+                pauseIcon.classList.remove("hidden");
+            } else {
+                music.pause();
+                playIcon.classList.remove("hidden");
+                pauseIcon.classList.add("hidden");
+            }
+        }
+
+        // Cuenta regresiva
+        const targetDate = new Date("November 21, 2026 16:00:00").getTime();
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const difference = targetDate - now;
+            if (difference < 0) return;
+
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = String(days).padStart(2, '0');
+            document.getElementById("hours").innerText = String(hours).padStart(2, '0');
+            document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
+            document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+</body>
+</html>
