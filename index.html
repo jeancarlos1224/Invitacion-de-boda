@@ -3,6 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Nos Casamos | Yarleni & Jean Carlos">
+
+    <meta property="og:description"
+    content="Te invitamos a compartir con nosotros este día tan especial.">
+    <meta property="og:image"
+    content="https://yarleniyjeancarlos.site/portada-whatsapp.jpeg">
+    <meta property="og:url"
+    content="https://yarleniyjeancarlos.site">
+    <meta property="og:type"
+    content="website">
+    
     <title>Nos Casamos - Yarleni y Jean Carlos</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
@@ -341,7 +352,7 @@
         <source src="melodia.mp3" type="audio/mpeg">
     </audio>
 
-    <button id="music-control" onclick="toggleMusic()" class="fixed bottom-5 right-5 z-50 bg-white/90 backdrop-blur-sm border border-brand-gold p-3 rounded-full shadow-xl text-brand-gold hover:scale-110 transition-transform hidden animate__animated animate__fadeInUp">
+    <button id="music-control" onclick="toggleMusic()" class="fixed top-5 right-5 z-50 bg-white/90 backdrop-blur-sm border border-brand-gold p-3 rounded-full shadow-xl text-brand-gold hover:scale-110 transition-transform hidden animate__animated animate__fadeInUp">
         <svg id="music-icon-play" class="w-6 h-6 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"></path>
         </svg>
@@ -443,7 +454,7 @@
             <!-- FRASE DE BIENVENIDA -->
             <section class="py-20 px-6 text-center max-w-2xl mx-auto">
                 <p class="font-serif-elegant text-2xl md:text-3xl italic text-gray-7xl leading-relaxed">
-                    "Una unión perfecta es aquella donde tres se toman de la mano: el esposo, la esposa y Dios"
+                    "Hay momentos en la vida que son especiales por sí solos, pero compartirlos con quienes más amamos los hace inolvidables."
                 </p>
                 <div class="text-brand-gold mt-6 text-2xl animate__animated animate__heartBeat animate__infinite animate__slower">♥</div>
             </section>
@@ -604,7 +615,7 @@
                                     <div class="h-44 bg-responsive-card mb-4 rounded-sm border border-brand-gold/20" style="background-image: url('album/salon.jpeg');"></div>
                                     <h3 class="font-serif-elegant text-2xl text-brand-gold mb-1">Brindis</h3>
                                     <p class="font-medium text-gray-700 mb-3">Salón de la Parroquia</p>
-                                    <p class="text-lg font-serif-elegant text-gray-800 mb-1">Al finalizar la misa</p>
+                                    <p class="text-lg font-serif-elegant text-gray-800 mb-1">Al finalizar la ceremonia</p>
                                     <p class="text-xs text-gray-500 mb-6">San Felipe, Villa Mella</p>
                                 </div>
                                 <a href="https://maps.app.goo.gl/95UuVWk4QVCxZYw98" target="_blank" class="inline-block border border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-white transition-all px-6 py-2.5 text-xs tracking-widest uppercase rounded-sm font-semibold">Ver Ubicación</a>
@@ -750,7 +761,7 @@
                                 </div>
                                 <span class="bank-label-custom">Banco</span>
                                 <span class="bank-colon">:</span>
-                                <span class="bank-value-custom">Banco BHD</span>
+                                <span class="bank-value-custom">Banco POPULAR</span>
                             </div>
 
                             <div class="bank-row-custom">
@@ -768,7 +779,7 @@
                                 </div>
                                 <span class="bank-label-custom">Cuenta</span>
                                 <span class="bank-colon">:</span>
-                                <span class="bank-value-custom">000000000000</span>
+                                <span class="bank-value-custom">805725298</span>
                             </div>
 
                             <div class="bank-row-custom">
@@ -786,7 +797,7 @@
                                 </div>
                                 <span class="bank-label-custom">Cédula</span>
                                 <span class="bank-colon">:</span>
-                                <span class="bank-value-custom">000-0000000-0</span>
+                                <span class="bank-value-custom">402-2341878-7</span>
                             </div>
                         </div>
 
@@ -872,7 +883,7 @@
         function sendWhatsAppMessage(event) {
             event.preventDefault();
             
-            const phoneNumber = "18001234567"; 
+            const phoneNumber = "8299933156"; 
             
             const attendance = document.getElementById("attendance").value;
             const message = document.getElementById("guest-message").value;
