@@ -63,7 +63,6 @@
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2), 0 8px 20px rgba(0, 0, 0, 0.1);
         }
 
-        /* Carta interna que sale del sobre */
         .envelope-card {
             position: absolute;
             bottom: 10px;
@@ -87,7 +86,6 @@
             padding: 10px;
         }
 
-        /* Solapas del Sobre */
         .flap {
             position: absolute;
             width: 0;
@@ -95,7 +93,6 @@
             border-style: solid;
         }
 
-        /* Solapa Superior (La que se abre) */
         .flap-top {
             top: 0;
             left: 0;
@@ -107,7 +104,6 @@
             filter: drop-shadow(0 3px 4px rgba(0,0,0,0.1));
         }
 
-        /* Solapas Laterales e Inferior */
         .flap-left {
             top: 0;
             left: 0;
@@ -133,7 +129,6 @@
             filter: drop-shadow(0 -2px 3px rgba(0,0,0,0.05));
         }
 
-        /* Sello de Cera Realista */
         .wax-seal {
             position: absolute;
             top: 100px;
@@ -158,7 +153,6 @@
             border: 1px solid #b89218;
         }
 
-        /* Estado Abierto */
         .open .flap-top {
             transform: rotateX(180deg);
             z-index: 1;
@@ -171,7 +165,7 @@
         }
 
         .open .envelope-card {
-            transform: translateY(-80px);
+            transform: translateY(-95px);
             z-index: 4;
         }
 
@@ -206,10 +200,11 @@
 
         .printed-photo {
             background-color: #ffffff;
-            padding: 12px 12px 28px 12px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12), 0 3px 6px rgba(0, 0, 0, 0.08);
+            padding: 10px 10px 24px 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
             border-radius: 2px;
             transition: all 0.4s ease;
+            border: 1px solid rgba(191, 168, 136, 0.2);
         }
 
         .printed-photo:nth-child(odd) { transform: rotate(-1.5deg); }
@@ -217,7 +212,7 @@
 
         .printed-photo:hover {
             transform: rotate(0deg) scale(1.04);
-            box-shadow: 0 18px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
             z-index: 20;
         }
 
@@ -226,6 +221,117 @@
             height: 100%;
             object-fit: cover;
             border-radius: 1px;
+        }
+
+        /* ==================== TARJETAS ELEGANTES UNIFICADAS ==================== */
+        .invitation-card-custom {
+            position: relative;
+            background: #ffffff;
+            max-width: 620px;
+            margin: auto;
+            padding: 55px 40px 40px 40px;
+            border-radius: 8px;
+            border: 1px solid rgba(191, 168, 136, 0.35);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06);
+            overflow: hidden;
+        }
+
+        .invitation-card-wide {
+            max-width: 860px;
+        }
+
+        .invitation-card-inner-border {
+            border: 1px solid rgba(191, 168, 136, 0.25);
+            padding: 30px 20px;
+            border-radius: 4px;
+            position: relative;
+        }
+
+        .floral-corner {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 180px;
+            height: 180px;
+            pointer-events: none;
+            opacity: 0.85;
+        }
+
+        .card-circle-icon {
+            width: 85px;
+            height: 85px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            background-color: #f7f3ee;
+            border: 1px solid rgba(191, 168, 136, 0.4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #bfa888;
+        }
+
+        .bank-table-container {
+            background-color: rgba(245, 240, 235, 0.35);
+            border: 1px solid rgba(191, 168, 136, 0.3);
+            border-radius: 12px;
+            padding: 15px 25px;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        .bank-row-custom {
+            display: grid;
+            grid-template-columns: 30px 90px 15px 1fr;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(191, 168, 136, 0.15);
+            font-size: 14px;
+        }
+
+        .bank-row-custom:last-child {
+            border-bottom: none;
+        }
+
+        .bank-icon {
+            color: #bfa888;
+            display: flex;
+            align-items: center;
+        }
+
+        .bank-label-custom {
+            font-weight: 500;
+            color: #bfa888;
+        }
+
+        .bank-colon {
+            color: #bfa888;
+            text-align: center;
+        }
+
+        .bank-value-custom {
+            color: #555555;
+            font-weight: 500;
+            text-align: right;
+        }
+
+        @media(max-width: 640px) {
+            .invitation-card-custom {
+                padding: 30px 15px;
+            }
+            .invitation-card-inner-border {
+                padding: 20px 10px;
+            }
+            .floral-corner {
+                width: 120px;
+                height: 120px;
+            }
+            .bank-table-container {
+                padding: 10px 15px;
+            }
+            .bank-row-custom {
+                grid-template-columns: 25px 75px 10px 1fr;
+                font-size: 13px;
+            }
         }
     </style>
 </head>
@@ -258,10 +364,52 @@
                     
                     <div class="wax-seal">Y&JC</div>
 
-                    <div class="envelope-card">
-                        <div class="envelope-card-content">
-                            <p class="font-serif-elegant italic text-lg text-brand-gold font-bold">Nuestra Boda</p>
-                            <p class="text-xs uppercase tracking-widest text-gray-500 mt-1">Yarleni & Jean Carlos</p>
+                    <!-- TARJETA INTERNA CON FLORECITAS EN COLOR DORADO/CREMA (#bfa888) -->
+                    <div class="envelope-card" style="background: #fffcf8; border: 1px solid rgba(191, 168, 136, 0.4); padding: 8px;">
+                        <!-- Marco interno fino -->
+                        <div class="w-full h-full border border-brand-gold/30 rounded-[2px] flex flex-col justify-center items-center relative p-2">
+                            
+                            <!-- Flor Esquina Superior Izquierda -->
+                            <svg class="absolute top-1 left-1 w-5 h-5" viewBox="0 0 24 24" fill="#bfa888">
+                                <path d="M12 2a3 3 0 00-3 3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3 3 3 0 00-3 3 3 3 0 003 3 3 3 0 003-3 3 3 0 003 3 3 3 0 003-3 3 3 0 00-3-3 3 3 0 003-3 3 3 0 00-3-3zm0 5a1 1 0 110-2 1 1 0 010 2z" opacity="0.85"/>
+                                <path d="M4 16c4 0 6-2 8-8 2 6 4 8 8 8" stroke="#bfa888" stroke-width="1.2" fill="none"/>
+                            </svg>
+
+                            <!-- Flor Esquina Superior Derecha -->
+                            <svg class="absolute top-1 right-1 w-5 h-5 -scale-x-100" viewBox="0 0 24 24" fill="#bfa888">
+                                <path d="M12 2a3 3 0 00-3 3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3 3 3 0 00-3 3 3 3 0 003 3 3 3 0 003-3 3 3 0 003 3 3 3 0 003-3 3 3 0 00-3-3 3 3 0 003-3 3 3 0 00-3-3zm0 5a1 1 0 110-2 1 1 0 010 2z" opacity="0.85"/>
+                                <path d="M4 16c4 0 6-2 8-8 2 6 4 8 8 8" stroke="#bfa888" stroke-width="1.2" fill="none"/>
+                            </svg>
+
+                            <!-- Flor Esquina Inferior Izquierda -->
+                            <svg class="absolute bottom-1 left-1 w-5 h-5 -scale-y-100" viewBox="0 0 24 24" fill="#bfa888">
+                                <path d="M12 2a3 3 0 00-3 3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3 3 3 0 00-3 3 3 3 0 003 3 3 3 0 003-3 3 3 0 003 3 3 3 0 003-3 3 3 0 00-3-3 3 3 0 003-3 3 3 0 00-3-3zm0 5a1 1 0 110-2 1 1 0 010 2z" opacity="0.85"/>
+                                <path d="M4 16c4 0 6-2 8-8 2 6 4 8 8 8" stroke="#bfa888" stroke-width="1.2" fill="none"/>
+                            </svg>
+
+                            <!-- Flor Esquina Inferior Derecha -->
+                            <svg class="absolute bottom-1 right-1 w-5 h-5 rotate-180" viewBox="0 0 24 24" fill="#bfa888">
+                                <path d="M12 2a3 3 0 00-3 3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3 3 3 0 00-3 3 3 3 0 003 3 3 3 0 003-3 3 3 0 003 3 3 3 0 003-3 3 3 0 00-3-3 3 3 0 003-3 3 3 0 00-3-3zm0 5a1 1 0 110-2 1 1 0 010 2z" opacity="0.85"/>
+                                <path d="M4 16c4 0 6-2 8-8 2 6 4 8 8 8" stroke="#bfa888" stroke-width="1.2" fill="none"/>
+                            </svg>
+
+                            <!-- Contenido -->
+                            <div class="envelope-card-content z-10">
+                                <p class="text-[9px] uppercase tracking-[0.2em] text-brand-gold font-semibold mb-1">Nos Casamos</p>
+                                <p class="font-serif-elegant italic text-xl font-bold text-gray-800 leading-tight">Yarleni & Jean Carlos</p>
+                                
+                                <!-- Separador con flor vectorial central en el mismo tono -->
+                                <div class="flex justify-center items-center gap-1.5 my-1 text-brand-gold/80">
+                                    <span class="h-[0.5px] w-5 bg-brand-gold/40"></span>
+                                    <svg class="w-3 h-3 fill-current" viewBox="0 0 24 24">
+                                        <path d="M12 2a3 3 0 00-3 3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3 3 3 0 00-3 3 3 3 0 003 3 3 3 0 003-3 3 3 0 003 3 3 3 0 003-3 3 3 0 00-3-3 3 3 0 003-3 3 3 0 00-3-3zm0 5a1 1 0 110-2 1 1 0 010 2z"/>
+                                    </svg>
+                                    <span class="h-[0.5px] w-5 bg-brand-gold/40"></span>
+                                </div>
+
+                                <p class="text-[10px] tracking-widest text-gray-500 font-medium">21 · 11 · 2026</p>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -292,6 +440,7 @@
 
         <div class="content-overlay">
             
+            <!-- FRASE DE BIENVENIDA -->
             <section class="py-20 px-6 text-center max-w-2xl mx-auto">
                 <p class="font-serif-elegant text-2xl md:text-3xl italic text-gray-7xl leading-relaxed">
                     "Una unión perfecta es aquella donde tres se toman de la mano: el esposo, la esposa y Dios"
@@ -299,53 +448,78 @@
                 <div class="text-brand-gold mt-6 text-2xl animate__animated animate__heartBeat animate__infinite animate__slower">♥</div>
             </section>
 
-            <!--<section class="py-16 px-6 bg-brand-cream text-center">
-                <div class="max-w-xl mx-auto border border-brand-gold/40 p-8 bg-white/80 rounded-sm shadow-sm relative">
-                    <p class="font-serif-elegant italic text-xl text-gray-6xl mb-8">Con la bendición de Dios y en compañía de nuestros padres</p>
+            <!-- SECCIÓN NUESTRA HISTORIA DE AMOR (ESTILO TARJETA ELEGANTE) -->
+            <section class="py-16 px-6 bg-brand-cream/30">
+                <div class="invitation-card-custom invitation-card-wide">
                     
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                        <div>
-                            <h3 class="font-serif-elegant italic text-xl font-bold text-brand-gold mb-2">Padres de la novia</h3>
-                            <p class="text-sm text-gray-700">Sr. Polfirio Polanco</p>
-                            <p class="text-sm text-gray-700">Sra. Ceneida Encarnación</p>
-                        </div>
-                        <div>
-                            <h3 class="font-serif-elegant italic text-xl font-bold text-brand-gold mb-2">Padres del novio</h3>
-                            <p class="text-sm text-gray-700">Sr. Aleysi Feliz</p>
-                            <p class="text-sm text-gray-700">Sra. Ramona González</p>
-                        </div>
-                    </div>
-                    <p class="font-serif-elegant italic text-xl mt-6">Nos complace invitarte a ser parte de este gran día.</p>
-                </div>
-            </section>-->
+                    <svg class="floral-corner" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M160 30 Q180 10 190 30 Q170 50 160 30 Z" fill="#d4c5b2" opacity="0.7"/>
+                        <path d="M130 15 Q160 -5 170 20 Q140 30 130 15 Z" fill="#c3b299" opacity="0.6"/>
+                        <path d="M175 60 Q195 45 190 75 Q170 75 175 60 Z" fill="#d4c5b2" opacity="0.7"/>
+                        <circle cx="150" cy="50" r="28" fill="#e8dacb" opacity="0.9"/>
+                        <circle cx="150" cy="50" r="22" fill="#dfcdbc"/>
+                        <path d="M140 45 C145 38 155 38 160 45 C165 52 155 60 145 58 Z" fill="#bfa888" opacity="0.5"/>
+                        <path d="M142 52 C148 46 156 48 158 54 C152 60 144 57 142 52 Z" fill="#aa9373" opacity="0.6"/>
+                        <circle cx="115" cy="35" r="14" fill="#f0e6d8"/>
+                        <circle cx="115" cy="35" r="5" fill="#bfa888"/>
+                        <circle cx="175" cy="95" r="16" fill="#f0e6d8"/>
+                        <circle cx="175" cy="95" r="6" fill="#bfa888"/>
+                        <path d="M150 50 Q120 80 100 90" stroke="#bfa888" stroke-width="1.5" stroke-linecap="round"/>
+                        <circle cx="100" cy="90" r="3" fill="#bfa888"/>
+                        <circle cx="108" cy="82" r="2.5" fill="#d4c5b2"/>
+                        <circle cx="118" cy="72" r="2" fill="#d4c5b2"/>
+                    </svg>
 
-            <section class="py-20 px-6 max-w-5xl mx-auto text-center">
-                <h2 class="font-serif-elegant italic text-4xl mb-2">Nuestra Historia de Amor</h2>
-                <p class="text-sm text-gray-500 uppercase tracking-widest mb-12">Cada momento juntos ha sido un regalo</p>
+                    <div class="invitation-card-inner-border">
+                        <div class="card-circle-icon">
+                            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                            </svg>
+                        </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 p-6 bg-brand-cream/30 rounded-lg border border-brand-gold/20">
-                    <div class="printed-photo h-72">
-                        <img src="historia1.jpeg" alt="Momento especial 1" loading="lazy" onerror="this.src='album/foto1.jpeg'">
-                    </div>
-                    <div class="printed-photo h-72">
-                        <img src="historia2.jpeg" alt="Momento especial 2" loading="lazy" onerror="this.src='album/foto2.jpeg'">
-                    </div>
-                    <div class="printed-photo h-72">
-                        <img src="historia3.jpeg" alt="Momento especial 3" loading="lazy" onerror="this.src='album/foto3.jpeg'">
-                    </div>
-                    <div class="printed-photo h-72">
-                        <img src="historia4.jpeg" alt="Momento especial 4" loading="lazy" onerror="this.src='album/foto4.jpeg'">
-                    </div>
-                    <div class="printed-photo h-72">
-                        <img src="historia5.jpeg" alt="Momento especial 5" loading="lazy" onerror="this.src='album/foto5.jpeg'">
-                    </div>
-                    <div class="printed-photo h-72">
-                        <img src="historia6.jpeg" alt="Momento especial 6" loading="lazy" onerror="this.src='album/foto6.jpeg'">
+                        <h2 class="font-serif-elegant italic text-4xl sm:text-5xl text-center text-brand-gold leading-tight">
+                            Nuestra Historia
+                        </h2>
+                        <h3 class="font-serif-elegant italic text-3xl sm:text-4xl text-center text-brand-gold mb-4">
+                            de Amor
+                        </h3>
+
+                        <p class="text-center text-gray-600 text-sm leading-relaxed max-w-md mx-auto mb-6">
+                            Cada paso recorrido juntos nos ha traído hasta este hermoso capítulo.
+                        </p>
+
+                        <div class="flex justify-center items-center gap-2 mb-8 text-brand-gold/60">
+                            <span class="h-[1px] w-12 bg-brand-gold/30"></span>
+                            <span class="text-xs">✦</span>
+                            <span class="h-[1px] w-12 bg-brand-gold/30"></span>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                            <div class="printed-photo h-64">
+                                <img src="historia1.jpeg" alt="Momento especial 1" loading="lazy" onerror="this.src='album/foto1.jpeg'">
+                            </div>
+                            <div class="printed-photo h-64">
+                                <img src="historia2.jpeg" alt="Momento especial 2" loading="lazy" onerror="this.src='album/foto2.jpeg'">
+                            </div>
+                            <div class="printed-photo h-64">
+                                <img src="historia3.jpeg" alt="Momento especial 3" loading="lazy" onerror="this.src='album/foto3.jpeg'">
+                            </div>
+                            <div class="printed-photo h-64">
+                                <img src="historia4.jpeg" alt="Momento especial 4" loading="lazy" onerror="this.src='album/foto4.jpeg'">
+                            </div>
+                            <div class="printed-photo h-64">
+                                <img src="historia5.jpeg" alt="Momento especial 5" loading="lazy" onerror="this.src='album/foto5.jpeg'">
+                            </div>
+                            <div class="printed-photo h-64">
+                                <img src="historia6.jpeg" alt="Momento especial 6" loading="lazy" onerror="this.src='album/foto6.jpeg'">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            <section class="relative py-20 px-6 text-center text-white bg-responsive-card min-h-[40vh] flex flex-col justify-center" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), url('album/imagenconteo.jpeg');">
+            <!-- CONTADOR REGRESIVO -->
+            <section class="relative py-20 px-6 text-center text-white bg-responsive-card min-h-[40vh] flex flex-col justify-center my-8" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), url('album/imagenconteo.jpeg');">
                 <h2 class="font-serif-elegant italic text-4xl mb-8">Faltan para nuestra boda</h2>
                 
                 <div class="flex justify-center gap-4 md:gap-8 max-w-xl mx-auto">
@@ -368,30 +542,259 @@
                 </div>
             </section>
 
-            <section class="py-20 px-6 max-w-4xl mx-auto">
-                <h2 class="font-serif-elegant italic text-center text-4xl mb-12">Dónde y Cuándo</h2>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                    <div class="relative text-center bg-white border border-brand-gold/30 p-8 shadow-md flex flex-col justify-between hover:shadow-xl transition-shadow duration-300">
-                        <div>
-                            <div class="h-48 bg-responsive-card mb-6 rounded-sm" style="background-image: url('album/parroquia.jpeg');"></div>
-                            <h3 class="font-serif-elegant text-2xl mb-2">Ceremonia Religiosa</h3>
-                            <p class="text-brand-gold font-medium mb-4">Parroquia San Felipe Apóstol</p>
-                            <p class="text-xl mb-2">4:00 P.M.</p>
-                            <p class="text-sm text-gray-500 mb-6">San Felipe, Villa Mella</p>
-                        </div>
-                        <a href="https://maps.app.goo.gl/95UuVWk4QVCxZYw98" target="_blank" class="inline-block border border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-white transition-all px-6 py-2 text-sm tracking-widest uppercase rounded-sm">Ver Mapa</a>
-                    </div>
+            <!-- SECCIÓN DÓNDE Y CUÁNDO (ESTILO TARJETA ELEGANTE) -->
+            <section class="py-16 px-6 bg-brand-cream/30">
+                <div class="invitation-card-custom invitation-card-wide">
+                    
+                    <svg class="floral-corner" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M160 30 Q180 10 190 30 Q170 50 160 30 Z" fill="#d4c5b2" opacity="0.7"/>
+                        <path d="M130 15 Q160 -5 170 20 Q140 30 130 15 Z" fill="#c3b299" opacity="0.6"/>
+                        <path d="M175 60 Q195 45 190 75 Q170 75 175 60 Z" fill="#d4c5b2" opacity="0.7"/>
+                        <circle cx="150" cy="50" r="28" fill="#e8dacb" opacity="0.9"/>
+                        <circle cx="150" cy="50" r="22" fill="#dfcdbc"/>
+                        <path d="M140 45 C145 38 155 38 160 45 C165 52 155 60 145 58 Z" fill="#bfa888" opacity="0.5"/>
+                        <path d="M142 52 C148 46 156 48 158 54 C152 60 144 57 142 52 Z" fill="#aa9373" opacity="0.6"/>
+                        <circle cx="115" cy="35" r="14" fill="#f0e6d8"/>
+                        <circle cx="115" cy="35" r="5" fill="#bfa888"/>
+                        <circle cx="175" cy="95" r="16" fill="#f0e6d8"/>
+                        <circle cx="175" cy="95" r="6" fill="#bfa888"/>
+                        <path d="M150 50 Q120 80 100 90" stroke="#bfa888" stroke-width="1.5" stroke-linecap="round"/>
+                        <circle cx="100" cy="90" r="3" fill="#bfa888"/>
+                        <circle cx="108" cy="82" r="2.5" fill="#d4c5b2"/>
+                        <circle cx="118" cy="72" r="2" fill="#d4c5b2"/>
+                    </svg>
 
-                    <div class="relative text-center bg-white border border-brand-gold/30 p-8 shadow-md flex flex-col justify-between hover:shadow-xl transition-shadow duration-300">
-                        <div>
-                            <div class="h-48 bg-responsive-card mb-6 rounded-sm" style="background-image: url('album/salon.jpeg');"></div>
-                            <h3 class="font-serif-elegant text-2xl mb-2">Brindis</h3>
-                            <p class="text-brand-gold font-medium mb-4">Salón de la Parroquia</p>
-                            <p class="text-xl mb-2">Después de la celebración</p>
-                            <p class="text-sm text-gray-500 mb-6">San Felipe, Villa Mella</p>
+                    <div class="invitation-card-inner-border">
+                        <div class="card-circle-icon">
+                            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            </svg>
                         </div>
-                        <a href="https://maps.app.goo.gl/95UuVWk4QVCxZYw98" target="_blank" class="inline-block border border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-white transition-all px-6 py-2 text-sm tracking-widest uppercase rounded-sm">Ver Mapa</a>
+
+                        <h2 class="font-serif-elegant italic text-4xl sm:text-5xl text-center text-brand-gold leading-tight">
+                            Dónde y Cuándo
+                        </h2>
+                        <p class="text-center text-gray-600 text-sm leading-relaxed max-w-md mx-auto mb-6">
+                            Te esperamos para compartir juntos esta gran bendición.
+                        </p>
+
+                        <div class="flex justify-center items-center gap-2 mb-8 text-brand-gold/60">
+                            <span class="h-[1px] w-12 bg-brand-gold/30"></span>
+                            <span class="text-xs">✦</span>
+                            <span class="h-[1px] w-12 bg-brand-gold/30"></span>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <!-- CEREMONIA -->
+                            <div class="bg-brand-cream/20 border border-brand-gold/30 p-6 rounded-sm text-center flex flex-col justify-between">
+                                <div>
+                                    <div class="h-44 bg-responsive-card mb-4 rounded-sm border border-brand-gold/20" style="background-image: url('album/parroquia.jpeg');"></div>
+                                    <h3 class="font-serif-elegant text-2xl text-brand-gold mb-1">Ceremonia</h3>
+                                    <p class="font-medium text-gray-700 mb-3">Parroquia San Felipe Apóstol</p>
+                                    <p class="text-lg font-serif-elegant text-gray-800 mb-1">21 de Noviembre, 4:00 P.M.</p>
+                                    <p class="text-xs text-gray-500 mb-6">San Felipe, Villa Mella</p>
+                                </div>
+                                <a href="https://maps.app.goo.gl/95UuVWk4QVCxZYw98" target="_blank" class="inline-block border border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-white transition-all px-6 py-2.5 text-xs tracking-widest uppercase rounded-sm font-semibold">Ver Ubicación</a>
+                            </div>
+
+                            <!-- BRINDIS -->
+                            <div class="bg-brand-cream/20 border border-brand-gold/30 p-6 rounded-sm text-center flex flex-col justify-between">
+                                <div>
+                                    <div class="h-44 bg-responsive-card mb-4 rounded-sm border border-brand-gold/20" style="background-image: url('album/salon.jpeg');"></div>
+                                    <h3 class="font-serif-elegant text-2xl text-brand-gold mb-1">Brindis</h3>
+                                    <p class="font-medium text-gray-700 mb-3">Salón de la Parroquia</p>
+                                    <p class="text-lg font-serif-elegant text-gray-800 mb-1">Al finalizar la misa</p>
+                                    <p class="text-xs text-gray-500 mb-6">San Felipe, Villa Mella</p>
+                                </div>
+                                <a href="https://maps.app.goo.gl/95UuVWk4QVCxZYw98" target="_blank" class="inline-block border border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-white transition-all px-6 py-2.5 text-xs tracking-widest uppercase rounded-sm font-semibold">Ver Ubicación</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN DE CONFIRMACIÓN DE ASISTENCIA (RSVP ESTILO TARJETA ELEGANTE) -->
+            <section class="py-16 px-6 bg-brand-cream/30">
+                <div class="invitation-card-custom">
+                    
+                    <svg class="floral-corner" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M160 30 Q180 10 190 30 Q170 50 160 30 Z" fill="#d4c5b2" opacity="0.7"/>
+                        <path d="M130 15 Q160 -5 170 20 Q140 30 130 15 Z" fill="#c3b299" opacity="0.6"/>
+                        <path d="M175 60 Q195 45 190 75 Q170 75 175 60 Z" fill="#d4c5b2" opacity="0.7"/>
+                        <circle cx="150" cy="50" r="28" fill="#e8dacb" opacity="0.9"/>
+                        <circle cx="150" cy="50" r="22" fill="#dfcdbc"/>
+                        <path d="M140 45 C145 38 155 38 160 45 C165 52 155 60 145 58 Z" fill="#bfa888" opacity="0.5"/>
+                        <path d="M142 52 C148 46 156 48 158 54 C152 60 144 57 142 52 Z" fill="#aa9373" opacity="0.6"/>
+                        <circle cx="115" cy="35" r="14" fill="#f0e6d8"/>
+                        <circle cx="115" cy="35" r="5" fill="#bfa888"/>
+                        <circle cx="175" cy="95" r="16" fill="#f0e6d8"/>
+                        <circle cx="175" cy="95" r="6" fill="#bfa888"/>
+                        <path d="M150 50 Q120 80 100 90" stroke="#bfa888" stroke-width="1.5" stroke-linecap="round"/>
+                        <circle cx="100" cy="90" r="3" fill="#bfa888"/>
+                        <circle cx="108" cy="82" r="2.5" fill="#d4c5b2"/>
+                        <circle cx="118" cy="72" r="2" fill="#d4c5b2"/>
+                    </svg>
+
+                    <div class="invitation-card-inner-border">
+                        <div class="card-circle-icon">
+                            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                            </svg>
+                        </div>
+
+                        <h2 class="font-serif-elegant italic text-4xl sm:text-5xl text-center text-brand-gold leading-tight">
+                            Confirmación
+                        </h2>
+                        <h3 class="font-serif-elegant italic text-3xl sm:text-4xl text-center text-brand-gold mb-4">
+                            de Asistencia
+                        </h3>
+
+                        <p class="text-center text-gray-600 text-sm leading-relaxed max-w-md mx-auto mb-6">
+                            Por favor confirma tu presencia y/o déjanos un hermoso mensaje para nuestro gran día.
+                        </p>
+
+                        <div class="flex justify-center items-center gap-2 mb-8 text-brand-gold/60">
+                            <span class="h-[1px] w-12 bg-brand-gold/30"></span>
+                            <span class="text-xs">✦</span>
+                            <span class="h-[1px] w-12 bg-brand-gold/30"></span>
+                        </div>
+
+                        <form onsubmit="sendWhatsAppMessage(event)" class="space-y-5 max-w-md mx-auto text-left">
+                            <div>
+                                <label class="block text-xs uppercase tracking-widest text-brand-gold font-medium mb-2">¿Nos acompañarás? *</label>
+                                <select id="attendance" required class="w-full px-4 py-3 border border-brand-gold/30 rounded-sm focus:outline-none focus:border-brand-gold text-sm bg-brand-cream/10 text-gray-700">
+                                    <option value="¡Sí, ahí estaré para celebrar con ustedes!">¡Sí, con mucho gusto asistiré!</option>
+                                    <option value="Lamentablemente no podré asistir, pero les deseo lo mejor.">Lamentablemente no podré asistir</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs uppercase tracking-widest text-brand-gold font-medium mb-2">Mensaje Bonito para los Novios</label>
+                                <textarea id="guest-message" rows="3" placeholder="Escribe un deseo o palabras especiales..." class="w-full px-4 py-3 border border-brand-gold/30 rounded-sm focus:outline-none focus:border-brand-gold text-sm bg-brand-cream/10 text-gray-700 placeholder-gray-400"></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full bg-brand-gold hover:bg-[#a89273] text-white py-3.5 px-6 rounded-sm transition-all text-xs uppercase tracking-widest font-semibold flex items-center justify-center gap-2 shadow-md">
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+                                Enviar Confirmación por WhatsApp
+                            </button>
+                        </form>
+
+                        <p class="font-serif-elegant italic text-center text-gray-500 text-lg mt-8">
+                            ¡Esperamos contar con tu valiosa presencia!
+                        </p>
+                        <div class="text-center text-brand-gold text-xs mt-1">♥</div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- MESA DE REGALOS -->
+            <section class="py-16 px-6 bg-brand-cream/30">
+                <div class="invitation-card-custom">
+                    
+                    <svg class="floral-corner" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M160 30 Q180 10 190 30 Q170 50 160 30 Z" fill="#d4c5b2" opacity="0.7"/>
+                        <path d="M130 15 Q160 -5 170 20 Q140 30 130 15 Z" fill="#c3b299" opacity="0.6"/>
+                        <path d="M175 60 Q195 45 190 75 Q170 75 175 60 Z" fill="#d4c5b2" opacity="0.7"/>
+                        <circle cx="150" cy="50" r="28" fill="#e8dacb" opacity="0.9"/>
+                        <circle cx="150" cy="50" r="22" fill="#dfcdbc"/>
+                        <path d="M140 45 C145 38 155 38 160 45 C165 52 155 60 145 58 Z" fill="#bfa888" opacity="0.5"/>
+                        <path d="M142 52 C148 46 156 48 158 54 C152 60 144 57 142 52 Z" fill="#aa9373" opacity="0.6"/>
+                        <circle cx="115" cy="35" r="14" fill="#f0e6d8"/>
+                        <circle cx="115" cy="35" r="5" fill="#bfa888"/>
+                        <circle cx="175" cy="95" r="16" fill="#f0e6d8"/>
+                        <circle cx="175" cy="95" r="6" fill="#bfa888"/>
+                        <path d="M150 50 Q120 80 100 90" stroke="#bfa888" stroke-width="1.5" stroke-linecap="round"/>
+                        <circle cx="100" cy="90" r="3" fill="#bfa888"/>
+                        <circle cx="108" cy="82" r="2.5" fill="#d4c5b2"/>
+                        <circle cx="118" cy="72" r="2" fill="#d4c5b2"/>
+                    </svg>
+
+                    <div class="invitation-card-inner-border">
+                        <div class="card-circle-icon">
+                            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V6a2 2 0 10-2 2h2zm9 2a1 1 0 011 1v10a1 1 0 01-1 1H3a1 1 0 01-1-1V11a1 1 0 011-1h18z"/>
+                            </svg>
+                        </div>
+
+                        <h2 class="font-serif-elegant italic text-4xl sm:text-5xl text-center text-brand-gold leading-tight">
+                            Sugerencia
+                        </h2>
+                        <h3 class="font-serif-elegant italic text-3xl sm:text-4xl text-center text-brand-gold mb-4">
+                            de Regalos
+                        </h3>
+
+                        <p class="text-center text-gray-600 text-sm leading-relaxed max-w-md mx-auto mb-6">
+                            El mejor regalo es tu presencia, pero si deseas tener un detalle con nosotros, te dejamos esta opción:
+                        </p>
+
+                        <div class="flex justify-center items-center gap-2 mb-6 text-brand-gold/60">
+                            <span class="h-[1px] w-12 bg-brand-gold/30"></span>
+                            <span class="text-xs">✦</span>
+                            <span class="h-[1px] w-12 bg-brand-gold/30"></span>
+                        </div>
+
+                        <h4 class="font-serif-elegant italic text-3xl text-brand-gold text-center mb-2">
+                            Transferencia Bancaria
+                        </h4>
+
+                        <p class="text-center text-gray-500 text-xs sm:text-sm max-w-xs sm:max-w-sm mx-auto mb-8">
+                            No es necesario estar cerca para hacernos sentir tu cariño. Si así lo prefieres, puedes realizar una transferencia.
+                        </p>
+
+                        <div class="bank-table-container">
+                            <div class="bank-row-custom">
+                                <div class="bank-icon">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V10M5 21V10M12 3L2 10h20L12 3zM3 21h18"/></svg>
+                                </div>
+                                <span class="bank-label-custom">Banco</span>
+                                <span class="bank-colon">:</span>
+                                <span class="bank-value-custom">Banco BHD</span>
+                            </div>
+
+                            <div class="bank-row-custom">
+                                <div class="bank-icon">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                                </div>
+                                <span class="bank-label-custom">Titular</span>
+                                <span class="bank-colon">:</span>
+                                <span class="bank-value-custom">Jean Carlos Feliz</span>
+                            </div>
+
+                            <div class="bank-row-custom">
+                                <div class="bank-icon">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10h18M7 15h1m4 0h1m-7 4h12a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                                </div>
+                                <span class="bank-label-custom">Cuenta</span>
+                                <span class="bank-colon">:</span>
+                                <span class="bank-value-custom">000000000000</span>
+                            </div>
+
+                            <div class="bank-row-custom">
+                                <div class="bank-icon">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                                </div>
+                                <span class="bank-label-custom">Tipo</span>
+                                <span class="bank-colon">:</span>
+                                <span class="bank-value-custom">Cuenta de Ahorros</span>
+                            </div>
+
+                            <div class="bank-row-custom">
+                                <div class="bank-icon">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3 3 0 00-3 3h6a3 3 0 00-3-3z"/></svg>
+                                </div>
+                                <span class="bank-label-custom">Cédula</span>
+                                <span class="bank-colon">:</span>
+                                <span class="bank-value-custom">000-0000000-0</span>
+                            </div>
+                        </div>
+
+                        <p class="font-serif-elegant italic text-center text-gray-500 text-lg mt-8">
+                            ¡Gracias por acompañarnos en este momento tan especial!
+                        </p>
+                        <div class="text-center text-brand-gold text-xs mt-1">♥</div>
+
                     </div>
                 </div>
             </section>
@@ -410,10 +813,8 @@
             const overlay = document.getElementById("envelope-overlay");
             const mainContent = document.getElementById("main-content");
 
-            // Paso 1: Abrir la solapa y romper el sello
             container.classList.add("open");
 
-            // Paso 2: Transición de la pantalla hacia arriba
             setTimeout(() => {
                 overlay.style.transform = "translateY(-100%)";
                 overlay.style.opacity = "0";
@@ -466,6 +867,26 @@
         }
         setInterval(updateCountdown, 1000);
         updateCountdown();
+
+        // Función para enviar mensaje directo por WhatsApp
+        function sendWhatsAppMessage(event) {
+            event.preventDefault();
+            
+            const phoneNumber = "18001234567"; 
+            
+            const attendance = document.getElementById("attendance").value;
+            const message = document.getElementById("guest-message").value;
+
+            let text = `*Confirmación para la Boda de Yarleni y Jean Carlos*%0A%0A`;
+            text += `*Asistencia:* ${encodeURIComponent(attendance)}%0A`;
+            
+            if (message.trim() !== "") {
+                text += `*Mensaje:* ${encodeURIComponent(message)}%0A`;
+            }
+
+            const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${text}`;
+            window.open(whatsappUrl, '_blank');
+        }
     </script>
 </body>
 </html>
